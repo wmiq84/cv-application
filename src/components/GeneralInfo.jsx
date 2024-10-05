@@ -1,14 +1,18 @@
-function GeneralInfo() {
+function Label(props) {
 	return (
-<div>
-<h1>Test title</h1>
-<form>
-  <input type="text" />
-</form>
-<button>Submit</button>
-<button>Edit</button>
-</div>
+		<label>
+			{props.placeholder}
+			<input type={props.text} name={props.name} />
+		</label>
 	);
 }
 
-export default GeneralInfo;
+export default function GeneralInfo() {
+	return (
+		<div>
+			<Label text="text" name="name" placeholder="Name: " />
+			<Label text="email" name="email" placeholder="Email: " />
+			<Label text="tel" name="phone" placeholder="Phone: " />
+		</div>
+	);
+}
