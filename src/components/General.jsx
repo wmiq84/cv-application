@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-function Form(props) {
+function GeneralForm(props) {
 	return (
 		<label>
 			{props.placeholder}
-			<input type={props.text} name={props.name} value={props.value} onChange={props.onChange} />
+			<input
+				type={props.text}
+				name={props.name}
+				value={props.value}
+				onChange={props.onChange}
+			/>
 		</label>
 	);
 }
@@ -18,13 +23,13 @@ export default function CreateForm() {
 	const [submitted, setSubmitted] = useState(false);
 
 	const handleChange = (event) => {
-		const {name, value} = event.target;
+		const { name, value } = event.target;
 		setFormData({
 			...formData,
 			[name]: value,
 			// email: event.target.value
 		});
-	}
+	};
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -36,9 +41,27 @@ export default function CreateForm() {
 		<>
 			<form onSubmit={handleSubmit}>
 				<div id="general-info">
-					<Form text="text" name="name" placeholder="Name: " value={formData.name} onChange={handleChange}/>
-					<Form text="email" name="email" placeholder="Email: " value={formData.email} onChange={handleChange}/>
-					<Form text="tel" name="phone" placeholder="Phone: " value={formData.phone} onChange={handleChange}/>
+					<GeneralForm
+						text="text"
+						name="name"
+						placeholder="Name: "
+						value={formData.name}
+						onChange={handleChange}
+					/>
+					<GeneralForm
+						text="email"
+						name="email"
+						placeholder="Email: "
+						value={formData.email}
+						onChange={handleChange}
+					/>
+					<GeneralForm
+						text="tel"
+						name="phone"
+						placeholder="Phone: "
+						value={formData.phone}
+						onChange={handleChange}
+					/>
 					<button>Submit</button>
 				</div>
 			</form>
