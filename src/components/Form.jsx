@@ -32,8 +32,8 @@ export default function CreateForm() {
 				<Form text="text" name="company" placeholder="Company Name: " />
 				<Form text="text" name="position" placeholder="Position Title: " />
 				<Form text="text" name="description" placeholder="Description: " />
-				<Form text="date" name="work-start-date" placeholder="Start Date: " />
-				<Form text="date" name="work-end-date" placeholder="End Date: " />
+				<Form text="date" name="workStart" placeholder="Start Date: " />
+				<Form text="date" name="workEnd" placeholder="End Date: " />
 			</div>
             <button type="submit">Submit</button>
 		</form>
