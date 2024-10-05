@@ -1,18 +1,54 @@
-function Label(props) {
+import { useState } from "react";
+
+function Form(props) {
 	return (
 		<label>
 			{props.placeholder}
-			<input type={props.text} name={props.name} />
+			<input type={props.text} name={props.name} value={props.value} onChange={props.onChange} />
 		</label>
 	);
 }
 
-export default function GeneralInfo() {
+export default function CreateForm() {
+	const [formData, setFormData] = useState({
+		name: '',
+		email: '',
+		phone: '',
+	});
+	const [submitted, setSubmitted] = useState(false);
+
+	const handleChange = (event) => {
+		const {name, value} = event.target;
+		setFormData({
+			...formData,
+			[name]: value,
+			// email: event.target.value
+		});
+	}
+
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		console.log('Form submitted.');
+		setSubmitted(true);
+	};
+
 	return (
-		<div>
-			<Label text="text" name="name" placeholder="Name: " />
-			<Label text="email" name="email" placeholder="Email: " />
-			<Label text="tel" name="phone" placeholder="Phone: " />
-		</div>
+		<>
+			<form onSubmit={handleSubmit}>
+				<div id="general-info">
+					<Form text="text" name="name" placeholder="Name: " value={formData.name} onChange={handleChange}/>
+					<Form text="email" name="email" placeholder="Email: " value={formData.email} onChange={handleChange}/>
+					<Form text="tel" name="phone" placeholder="Phone: " value={formData.phone} onChange={handleChange}/>
+					<button>Submit</button>
+				</div>
+			</form>
+			{submitted && (
+				<div id="submitted-data">
+					<p>Name: {formData.name}</p>
+					<p>Email: {formData.email}</p>
+					<p>Phone: {formData.phone}</p>
+				</div>
+			)}
+		</>
 	);
 }
